@@ -32,7 +32,7 @@
   <script>
     $(document).ready(function () {
     $("#exportar").click(function () {
-    let usuarios = []; // Agora ele é limpo a cada clique
+    let usuarios = []; 
 
     $('#tabelaUsuarios tbody tr').each(function () {
         let tds = $(this).find('td');
@@ -45,29 +45,35 @@
         usuarios.push(usuario);
     });
 
-    
-        $.ajax({
-            url:'http://localhost/Estudo php/WHITEEXCEL/export.php',
-            method:"POST",
-             data: {
-                users  : usuarios                
-            },
-            success:function(data){
-                
-            }
-        })
+      $.ajax({
+          url: 'http://localhost/Estudo php/WHITEEXCEL/export.php',
+          method: "POST",
+          data: {
+              users: usuarios
+          },
+          success: function(data) {
+              const res = JSON.parse(data);
+              const link = document.createElement('a');
+              link.href = res.arquivo; 
+              link.download = res.arquivo.split('/').pop();
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+
+              apagar_arquivo(res.arquivo);
+          },
+          async: true
+      });    
     })
-    const input = document.getElementById('enviar');
+        
 
-    input.addEventListener('click', function () {
-    const fileArq = document.getElementById('arquivo');
-
-      const arquivo = fileArq.files[0];
+    $("#enviar").click(function(){
+      let arquivo = $('#arquivo')[0].files[0];      
       if (arquivo) {
         
 
-       const formData = new FormData();
-        formData.append('arquivo', arquivo); // 'arquivo' é o nome da variável no PHP
+       let formData = new FormData();
+        formData.append('arquivo', arquivo); 
 
         fetch('http://localhost/Estudo php/WHITEEXCEL/export.php', {
           method: 'POST',
@@ -92,8 +98,22 @@
         });
       }
     });
-    });
+    function apagar_arquivo(name_arq){
+      $.ajax({
+        url:'http://localhost/Estudo php/WHITEEXCEL/export.php',
+        method:'POST',
+        data: {
+              name_arq  : name_arq,
+              op: 'Apagar_arquivo'
 
+        },success:function(data){
+              console.log('arquivo apagado')             
+            },
+      })
+    }
+    });
+    
+    
   </script>
 
 </body>
