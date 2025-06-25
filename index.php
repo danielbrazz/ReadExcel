@@ -4,25 +4,31 @@
   <title>Upload de Arquivo</title>
 </head>
 <body>
-
-  <input type="file" id="arquivo" />
-  <button id="enviar" >enviar</button>
-  <button id='exportar'>Exportar</button>
-  <div id="tabelaUsuarios" class="d-none" style="display:block">
+  
+  
+  <div style="margin:1%">
+    <div style="margin-bottom:1%">
+      <input type="file" style="margin-right:2px" id="arquivo" />
+      <button style="margin-right:1%" id="enviar" >enviar</button>
       
-      <table class="table table-bordered" stlye="display:none">
-        <thead class="table-dark">
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>            
-            <th>Idade</th>   
-   
-          </tr>
-        </thead>
-        <tbody id="corpoTabela">
+    </div>
+    <div id="tabelaUsuarios"  style="display:block">
+        
+        <table class="table table-bordered" stlye="display:block">
+          <thead class="table-dark">
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>            
+              <th>Idade</th>   
+    
+            </tr>
+          </thead>
+          <tbody id="corpoTabela">
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+      <button id='exportar' style="float:right">Exportar</button>
     </div>
     
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
