@@ -46,7 +46,7 @@
     });
 
       $.ajax({
-          url: 'http://localhost/Estudo php/WHITEEXCEL/export.php',
+          url: './export.php',
           method: "POST",
           data: {
               users: usuarios
@@ -75,7 +75,7 @@
        let formData = new FormData();
         formData.append('arquivo', arquivo); 
 
-        fetch('http://localhost/Estudo php/WHITEEXCEL/export.php', {
+        fetch('./export.php', {
           method: 'POST',
           body: formData
         })
@@ -100,7 +100,7 @@
     });
     function apagar_arquivo(name_arq){
       $.ajax({
-        url:'http://localhost/Estudo php/WHITEEXCEL/export.php',
+        url:'./export.php',
         method:'POST',
         data: {
               name_arq  : name_arq,
